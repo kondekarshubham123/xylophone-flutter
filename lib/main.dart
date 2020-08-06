@@ -6,48 +6,34 @@ void main() => runApp(XylophoneApp());
 class XylophoneApp extends StatelessWidget {
 
 
+  Expanded BuildExpView({colorbg,int ton}){
+    return Expanded(child: FlatButton(child: Container(color: colorbg,),onPressed:(){
+              final player = AudioCache();
+              player.play("note$ton.wav");
+            }));
+    }
+
+
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        backgroundColor: Colors.black,
         body: SafeArea(
-          child: Container(
-            color: Colors.black,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Expanded(child: FlatButton(child: Container(color: Colors.red,),onPressed:(){
-                  final player = AudioCache();
-                  player.play("note1.wav");
-                })),
-                Expanded(child: FlatButton(child: Container(color: Colors.orange,),onPressed:() {
-                  final player = AudioCache();
-                  player.play("note2.wav");
-                  },)),
-                Expanded(child: FlatButton(child: Container(color: Colors.yellow,),onPressed:() {                  
-                  final player = AudioCache();
-                  player.play("note3.wav");},)),
-                Expanded(child: FlatButton(child: Container(color: Colors.green,),onPressed:()  {
-                  final player = AudioCache();
-                  player.play("note4.wav");
-                },)),
-                Expanded(child: FlatButton(child: Container(color: Colors.blue,),onPressed:()   {
-                  final player = AudioCache();
-                  player.play("note5.wav");
-                },)),
-                Expanded(child: FlatButton(child: Container(color: Colors.indigo,),onPressed:() {
-                  final player = AudioCache();
-                  player.play("note6.wav");
-                },)),
-                Expanded(child: FlatButton(child: Container(color: Colors.purple,),onPressed:() {
-                  final player = AudioCache();
-                  player.play("note7.wav");
-                },)),
-              ],
-            ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              BuildExpView(colorbg:Colors.red,ton: 1),
+              BuildExpView(colorbg:Colors.orange,ton: 2),
+              BuildExpView(colorbg:Colors.yellow,ton: 3),
+              BuildExpView(colorbg:Colors.green,ton: 4),
+              BuildExpView(colorbg:Colors.blue,ton: 5),
+              BuildExpView(colorbg:Colors.indigo,ton: 6),
+              BuildExpView(colorbg:Colors.purple,ton: 7),
+            ],
           ),
         ),
       ),
